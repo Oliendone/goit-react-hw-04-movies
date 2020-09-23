@@ -1,109 +1,22 @@
-import React, { Component } from 'react';
-import { v4 as uuidv4 } from 'uuid';
+import React from 'react';
 import PropTypes from 'prop-types';
+import { Redirect, Route, Switch } from 'react-router-dom';
 
-import ContactForm from './ContactForm/ContactForm';
-import ContactList from './ContactList/ContactList';
-import Filter from './Filter/Filter';
+import Navigation from './Navigation/Navigation';
+import HomePage from '../views/HomePage/HomePage';
+import MovieDetailsPage from '../views/MovieDetailsPage/MovieDetailsPage';
+import MoviesPage from '../views/MoviesPage/MoviesPage';
 
-import s from './App.module.css';
-
-export default class App extends Component {
-  static propTypes = {
-    filter: PropTypes.string,
-    contacts: PropTypes.arrayOf(
-      PropTypes.objectOf(
-        PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-      ),
-    ),
-  };
-
-  state = {
-    contacts: [],
-    filter: '',
-  };
-
-  componentDidMount() {
-    const existedContacts = localStorage.getItem('contacts');
-
-    if (existedContacts) {
-      this.setState({ contacts: JSON.parse(existedContacts) });
-    }
-  }
-
-  componentDidUpdate(prevState) {
-    if (prevState.contacts !== this.state.contacts) {
-      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
-    }
-  }
-
-  changeFilter = filter => {
-    this.setState({ filter: filter.target.value });
-  };
-
-  addContact = (name, number) => {
-    const { contacts } = this.state;
-
-    const newContact = {
-      id: uuidv4(),
-      name,
-      number,
-    };
-
-    const isInContacts = contacts.find(contact => {
-      return contact.name.toLowerCase() === name.toLowerCase();
-    });
-
-    if (isInContacts) {
-      alert(`${name} is already in contacts.`);
-    } else if (number === '') {
-      alert("You don't wrote a nubmer.");
-    } else {
-      this.setState(prevState => {
-        return {
-          contacts: [...prevState.contacts, newContact],
-        };
-      });
-    }
-  };
-
-  getFilteredTasks = () => {
-    const { filter, contacts } = this.state;
-
-    return contacts.filter(contact =>
-      contact.name.toLowerCase().includes(filter.toLowerCase()),
-    );
-  };
-
-  deleteContact = id => {
-    this.setState(state => {
-      return {
-        contacts: state.contacts.filter(contact => contact.id !== id),
-      };
-    });
-  };
-
-  render() {
-    const { contacts, filter } = this.state;
-
-    const filteredContacts = this.getFilteredTasks();
-
-    return (
-      <>
-        <div className={s.wrapperPhonebook}>
-          <h1 className={s.phoneBookHeading}>Phonebook</h1>
-          <ContactForm onAddContact={this.addContact} />
-          <h2 className={s.contactsHeading}>Contacts</h2>
-          {contacts.length > 0 && (
-            <Filter value={filter} onChangeFilter={this.changeFilter} />
-          )}
-        </div>
-
-        <ContactList
-          contacts={filteredContacts}
-          onDelete={this.deleteContact}
-        />
-      </>
-    );
-  }
+export default function App() {
+  return (
+    <>
+      <Navigation />
+      <Switch>
+        <Route path="/" exact component={HomePage} />
+        <Route path="/movies" component={MoviesPage} />
+        <Route path="/movies/:movieId" component={MovieDetailsPage} />
+        <Redirect to="/" />
+      </Switch>
+    </>
+  );
 }

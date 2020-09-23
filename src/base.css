@@ -1,11 +1,9 @@
 * {
   margin: 0;
   padding: 0;
-  list-style-type: none;
 }
 
 body {
-  background-color: rgb(208, 203, 230);
   font-family: Roboto;
 }
 

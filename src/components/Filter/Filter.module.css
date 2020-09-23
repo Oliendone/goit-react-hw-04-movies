@@ -1,7 +1,0 @@
-.filterText {
-  composes: contactName from '../ContactForm/ContactForm.module.css';
-}
-
-.filterInput {
-  composes: nameInput from '../ContactForm/ContactForm.module.css';
-}
