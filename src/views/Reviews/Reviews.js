@@ -15,7 +15,6 @@ export default class Cast extends Component {
     moviesAPI
       .movieReviews(this.props.match.params.movieId)
       .then(reviews => {
-        console.log(reviews);
         this.setState({ reviews });
       })
       .catch(error => {

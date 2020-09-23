@@ -31,8 +31,6 @@ export default class Cast extends Component {
     const { cast } = this.state;
     const { imgURL } = this.props;
 
-    console.log(this.state.cast);
-
     return (
       <>
         {cast && (

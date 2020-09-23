@@ -27,7 +27,7 @@ export default class HomePage extends Component {
 
   render() {
     const { movies } = this.state;
-    const { match } = this.props;
+    const { location } = this.props;
 
     return (
       <div>
@@ -35,7 +35,11 @@ export default class HomePage extends Component {
         <ul>
           {movies.map(({ title, id }) => (
             <li key={id}>
-              <Link to={`/movies/${id}`}>{title}</Link>
+              <Link
+                to={{ pathname: `/movies/${id}`, state: location.pathname }}
+              >
+                {title}
+              </Link>
             </li>
           ))}
         </ul>

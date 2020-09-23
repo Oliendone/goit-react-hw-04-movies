@@ -36,6 +36,10 @@ export default class MovieDetailsPage extends Component {
       );
   }
 
+  onGoBack = () => {
+    this.props.history.push(this.props.location.state);
+  };
+
   render() {
     const { movie } = this.state;
     const { imgURL, match } = this.props;
@@ -45,6 +49,7 @@ export default class MovieDetailsPage extends Component {
       <div>
         {this.state.movie && (
           <>
+            <button onClick={this.onGoBack}>Back</button>
             <img
               src={`${imgURL}${movie.poster_path}`}
               alt={movie.original_title}
@@ -65,10 +70,10 @@ export default class MovieDetailsPage extends Component {
             </div>
             <p>Additional information</p>
             <ul>
-              <li>
+              <li key="1">
                 <Link to={`${match.url}/cast`}>Cast</Link>
               </li>
-              <li>
+              <li key="2">
                 <Link to={`${match.url}/reviews`}>Reviews</Link>
               </li>
             </ul>

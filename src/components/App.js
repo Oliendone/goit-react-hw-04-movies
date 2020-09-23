@@ -13,7 +13,7 @@ export default function App() {
       <Navigation />
       <Switch>
         <Route path="/" exact component={HomePage} />
-        <Route path="/movies" component={MoviesPage} />
+        <Route path="/movies" exact component={MoviesPage} />
         <Route path="/movies/:movieId" component={MovieDetailsPage} />
         <Redirect to="/" />
       </Switch>
