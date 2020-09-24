@@ -37,7 +37,14 @@ export default class MovieDetailsPage extends Component {
   }
 
   onGoBack = () => {
-    this.props.history.push(this.props.location.state);
+    const { state } = this.props.location;
+    console.log(state);
+
+    if (state && state.from) {
+      return this.props.history.push(state.from);
+    }
+
+    this.props.history.push('/');
   };
 
   render() {

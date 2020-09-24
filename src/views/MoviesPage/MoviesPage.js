@@ -48,7 +48,10 @@ export default class MoviesPage extends Component {
             {movies.map(({ title, id }) => (
               <li key={id}>
                 <Link
-                  to={{ pathname: `/movies/${id}`, state: location.pathname }}
+                  to={{
+                    pathname: `/movies/${id}`,
+                    state: { from: location },
+                  }}
                 >
                   {title}
                 </Link>
