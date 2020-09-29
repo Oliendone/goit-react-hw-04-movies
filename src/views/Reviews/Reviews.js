@@ -15,7 +15,9 @@ export default class Cast extends Component {
     moviesAPI
       .movieReviews(this.props.match.params.movieId)
       .then(reviews => {
-        this.setState({ reviews });
+        reviews.total_results
+          ? this.setState({ reviews: reviews.results })
+          : this.setState({ reviews: 'There are no reviews yet' });
       })
       .catch(error => {
         this.setState({ error: error.message });
@@ -29,10 +31,11 @@ export default class Cast extends Component {
   }
   render() {
     const { reviews } = this.state;
+    console.log(reviews);
 
     return (
       <>
-        {reviews && (
+        {reviews && typeof reviews === 'object' && (
           <ul>
             {reviews.map(review => (
               <li key={review.id}>
@@ -40,9 +43,9 @@ export default class Cast extends Component {
                 <p>{review.content}</p>
               </li>
             ))}
-            ;
           </ul>
         )}
+        {reviews && typeof reviews === 'string' && <p>{reviews}</p>}
       </>
     );
   }

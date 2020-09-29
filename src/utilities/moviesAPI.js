@@ -24,7 +24,7 @@ const movieCast = id => {
 const movieReviews = id => {
   return axios
     .get(`${baseURL}/3/movie/${id}/reviews?api_key=${key}`)
-    .then(responce => responce.data.results);
+    .then(responce => responce.data);
 };
 
 const moviesSearch = movie => {
