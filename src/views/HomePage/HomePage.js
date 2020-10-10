@@ -1,17 +1,26 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import Loader from 'react-loader-spinner';
+
+import MovieItem from '../../components/MovieItem/MovieItem';
 
 import moviesAPI from '../../utilities/moviesAPI';
+import s from '../styles.module.css';
 
 export default class HomePage extends Component {
+  static defaultProps = {
+    imgURL: 'https://image.tmdb.org/t/p/w500',
+  };
+
   state = {
     movies: [],
     loading: false,
     error: null,
   };
 
-  componentDidMount() {
-    moviesAPI
+  async componentDidMount() {
+    this.setState({ loading: true });
+
+    await moviesAPI
       .trendingMovies()
       .then(movies => this.setState({ movies }))
       .catch(error => {
@@ -26,26 +35,24 @@ export default class HomePage extends Component {
   }
 
   render() {
-    const { movies } = this.state;
-    const { location } = this.props;
+    const { movies, loading } = this.state;
+    const { location, imgURL } = this.props;
 
     return (
-      <div>
-        <h2>Trending today</h2>
-        <ul>
-          {movies.map(({ title, id }) => (
-            <li key={id}>
-              <Link
-                to={{
-                  pathname: `/movies/${id}`,
-                  state: { from: location },
-                }}
-              >
-                {title}
-              </Link>
-            </li>
-          ))}
-        </ul>
+      <div className="container">
+        <h2 className={s.heading}>Trending today</h2>
+        {loading && (
+          <Loader
+            type="Circles"
+            color="#00BFFF"
+            height={80}
+            width={80}
+            className="Loader"
+          />
+        )}
+        {movies && (
+          <MovieItem movies={movies} location={location} imgURL={imgURL} />
+        )}
       </div>
     );
   }

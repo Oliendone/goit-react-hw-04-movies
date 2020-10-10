@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import moviesAPI from '../../utilities/moviesAPI';
+import s from './Reviews.module.css';
 
 export default class Cast extends Component {
   state = {
@@ -36,16 +37,18 @@ export default class Cast extends Component {
     return (
       <>
         {reviews && typeof reviews === 'object' && (
-          <ul>
+          <ul className={s.reviews}>
             {reviews.map(review => (
-              <li key={review.id}>
-                <h4>Author: {review.author}</h4>
+              <li key={review.id} className={s.item}>
+                <h4 className={s.author}>Author: {review.author}</h4>
                 <p>{review.content}</p>
               </li>
             ))}
           </ul>
         )}
-        {reviews && typeof reviews === 'string' && <p>{reviews}</p>}
+        {reviews && typeof reviews === 'string' && (
+          <p className={s.noReviews}>{reviews}</p>
+        )}
       </>
     );
   }

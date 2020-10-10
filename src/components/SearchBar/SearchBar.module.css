@@ -1,0 +1,26 @@
+.searchForm {
+  padding-top: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.formInput {
+  width: 400px;
+  height: 20px;
+}
+
+.buttonSearch {
+  outline: none;
+  font-weight: bold;
+  text-transform: uppercase;
+  background-color: #0a64a4;
+  border: none;
+  color: white;
+  padding: 0 10px;
+  cursor: pointer;
+}
+
+.buttonSearch:active {
+  box-shadow: inset -2px -2px 3px rgba(0, 0, 0, 0.6),
+    inset 2px 2px 3px rgba(0, 0, 0, 0.6);
+}

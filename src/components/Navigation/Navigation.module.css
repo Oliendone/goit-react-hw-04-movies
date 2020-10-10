@@ -1,0 +1,31 @@
+.header {
+  display: flex;
+  justify-content: center;
+  background-color: #0a64a4;
+  height: 45px;
+  align-items: center;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+.link {
+  text-transform: uppercase;
+  padding: 3px 10px;
+  text-decoration: none;
+  font-weight: bold;
+  color: rgb(255, 255, 255);
+  background-color: rgb(255, 255, 255, 0);
+  border: solid 2px white;
+  border-radius: 1rem;
+  transition: background-color 200ms ease-in-out, color 200ms ease-in-out,
+    border-radius 200ms ease-in-out;
+}
+
+.link:hover {
+  background-color: #fff;
+  color: #0a64a4;
+  border-radius: 0;
+}
+
+.header li:not(:nth-last-child(-n + 1)) {
+  margin-right: 50px;
+}

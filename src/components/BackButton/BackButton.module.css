@@ -1,0 +1,11 @@
+.backButton {
+  composes: link from '../Navigation/Navigation.module.css';
+  position: relative;
+  bottom: -20px;
+}
+
+.backButton:hover {
+  border-radius: 0;
+  background-color: white;
+  color: #03406a;
+}

@@ -1,0 +1,18 @@
+.reviews {
+  padding-top: 30px;
+  color: white;
+}
+
+.item:nth-child(n + 2) {
+  margin-top: 20px;
+}
+
+.author {
+  margin-bottom: 15px;
+}
+
+.noReviews {
+  text-align: center;
+  color: #fff;
+  margin-top: 20px;
+}

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import Loader from 'react-loader-spinner';
 
 import moviesAPI from '../../utilities/moviesAPI';
+import s from './Cast.module.css';
 
 export default class Cast extends Component {
   state = {
@@ -9,10 +11,10 @@ export default class Cast extends Component {
     error: null,
   };
 
-  componentDidMount() {
+  async componentDidMount() {
     this.setState({ loading: true });
 
-    moviesAPI
+    await moviesAPI
       .movieCast(this.props.match.params.movieId)
       .then(cast => {
         this.setState({ cast });
@@ -28,15 +30,24 @@ export default class Cast extends Component {
       );
   }
   render() {
-    const { cast } = this.state;
+    const { cast, loading } = this.state;
     const { imgURL } = this.props;
 
     return (
       <>
+        {loading && (
+          <Loader
+            type="Circles"
+            color="#00BFFF"
+            height={80}
+            width={80}
+            className="Loader"
+          />
+        )}
         {cast && (
-          <ul>
+          <ul className={s.castList}>
             {cast.map(actor => (
-              <li key={actor.id}>
+              <li key={actor.id} className={s.actorItem}>
                 <img
                   src={
                     actor.profile_path
@@ -44,10 +55,11 @@ export default class Cast extends Component {
                       : 'https://www.allianceplast.com/wp-content/uploads/2017/11/no-image.png'
                   }
                   alt={actor.name}
-                  width="50"
+                  width="100"
                 />
-                <p>{actor.name}</p>
-                <p>Character: {actor.character}</p>
+                <p className={s.actorName}>{actor.name}</p>
+                <p className={s.actorCharacter}>Character</p>
+                <span>{actor.character}</span>
               </li>
             ))}
             ;

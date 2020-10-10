@@ -1,10 +1,12 @@
 * {
   margin: 0;
   padding: 0;
+  list-style: none;
 }
 
 body {
   font-family: Roboto;
+  background-color: #03406a;
 }
 
 @font-face {
@@ -16,4 +18,21 @@ body {
   font-family: 'Roboto';
   font-weight: 500;
   src: local('Roboto'), url(./fonts/Roboto-Medium.ttf) format('truetype');
+}
+
+/* .main-wrapper {
+  width: 100%;
+  height: 100%;
+  background-color: #05523b;
+} */
+
+.container {
+  width: 1000px;
+  margin: 0 auto;
+}
+
+.Loader {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
 }

@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Redirect, Route, Switch } from 'react-router-dom';
 
 import Navigation from './Navigation/Navigation';
@@ -7,9 +6,11 @@ import HomePage from '../views/HomePage/HomePage';
 import MovieDetailsPage from '../views/MovieDetailsPage/MovieDetailsPage';
 import MoviesPage from '../views/MoviesPage/MoviesPage';
 
+import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
+
 export default function App() {
   return (
-    <>
+    <div className="main-wrapper">
       <Navigation />
       <Switch>
         <Route path="/" exact component={HomePage} />
@@ -17,6 +18,6 @@ export default function App() {
         <Route path="/movies/:movieId" component={MovieDetailsPage} />
         <Redirect to="/" />
       </Switch>
-    </>
+    </div>
   );
 }

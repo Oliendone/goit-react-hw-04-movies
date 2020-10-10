@@ -1,0 +1,26 @@
+.additionalInfo {
+  text-transform: uppercase;
+  color: white;
+  text-align: center;
+  font-weight: bold;
+}
+
+.infoCategories {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.infoItem:not(:nth-last-of-type(1)) {
+  margin-right: 50px;
+}
+
+.link {
+  composes: link from '../Navigation/Navigation.module.css';
+}
+
+.link:hover {
+  background-color: #fff;
+  color: #0a64a4;
+  border-radius: 0;
+}

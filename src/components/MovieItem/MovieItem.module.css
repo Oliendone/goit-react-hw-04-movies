@@ -1,0 +1,47 @@
+.filmList {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.filmItem {
+  width: 220px;
+  padding-bottom: 20px;
+  text-align: center;
+  transition: transform 500ms;
+}
+
+.filmItem:hover {
+  transform: translateY(-1em);
+}
+
+.filmItem:hover .filmName {
+  transform: translateY(13px);
+  opacity: 1;
+}
+
+.filmImg {
+  display: block;
+  border-top-right-radius: 1em;
+  border-top-left-radius: 1em;
+  position: relative;
+  z-index: 2;
+}
+
+.filmName {
+  padding: 10px;
+  text-transform: uppercase;
+  color: white;
+  border-bottom-left-radius: 1em;
+  border-bottom-right-radius: 1em;
+  position: relative;
+  z-index: 1;
+  top: -13px;
+  opacity: 0;
+  transition: transform 500ms, opacity 500ms;
+}
+
+.name {
+  text-decoration: none;
+}

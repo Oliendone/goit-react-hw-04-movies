@@ -1,0 +1,28 @@
+.castList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding-top: 20px;
+}
+
+.actorItem {
+  width: 120px;
+  text-align: center;
+  color: white;
+  margin-right: 30px;
+  margin-right: 30px;
+}
+
+.actorItem:nth-child(n + 7) {
+  margin-top: 20px;
+}
+
+.actorItem:nth-of-type(6n + 6) {
+  margin-right: 0;
+}
+
+.actorCharacter {
+  font-weight: bold;
+  text-decoration: underline;
+  text-transform: uppercase;
+}
