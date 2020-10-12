@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import s from './MovieItem.module.css';
 
@@ -28,3 +29,25 @@ export default function MovieItem({ movies, location, imgURL }) {
     </ul>
   );
 }
+
+MovieItem.propTypes = {
+  movies: PropTypes.arrayOf(
+    PropTypes.objectOf(
+      PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number,
+        PropTypes.array,
+        PropTypes.bool,
+      ]),
+    ),
+  ).isRequired,
+  imgURL: PropTypes.string.isRequired,
+  location: PropTypes.objectOf(
+    PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+      PropTypes.array,
+      PropTypes.bool,
+    ]),
+  ).isRequired,
+};

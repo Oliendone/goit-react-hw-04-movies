@@ -1,6 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-import nextId from 'react-id-generator';
 import s from './MovieItemInfo.module.css';
 
 export default function MovieItemInfo({ movie, imgURL }) {
@@ -35,3 +35,15 @@ export default function MovieItemInfo({ movie, imgURL }) {
     </>
   );
 }
+
+MovieItemInfo.propTypes = {
+  movie: PropTypes.objectOf(
+    PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+      PropTypes.array,
+      PropTypes.bool,
+    ]),
+  ).isRequired,
+  imgURL: PropTypes.string.isRequired,
+};
